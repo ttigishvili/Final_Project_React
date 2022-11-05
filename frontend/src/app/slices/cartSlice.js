@@ -33,7 +33,7 @@ const cartSlice = createSlice({
           position: "bottom-left",
         });
       }
-      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+      // localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
     decreaseCart(state, action) {
       const itemIndex = state.cartItems.findIndex(
@@ -58,7 +58,7 @@ const cartSlice = createSlice({
         });
       }
 
-      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+      // localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
     removeFromCart(state, action) {
       state.cartItems.map((cartItem) => {
@@ -73,7 +73,7 @@ const cartSlice = createSlice({
             position: "bottom-left",
           });
         }
-        localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+        // localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
         return state;
       });
     },

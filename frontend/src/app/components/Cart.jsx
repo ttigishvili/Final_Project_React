@@ -12,9 +12,26 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const Cart = () => {
+  const [count, setCount] = useState(0);
   const [product, setProduct] = useState([]);
   const [cartItems, setCart] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
+  const [log, setLog] = useState("");
+  const [prevVal, setPrevVal] = useState(0);
+
+  const setLogIfArrowClicked = (e, product) => {
+    const currentVal = e.target.value;
+    if (currentVal - prevVal === 1) {
+      setLog(`${log}+`);
+      console.log(product, "product");
+      dispatch(addToCart(product));
+    } else if (currentVal - prevVal === -1) {
+      setLog(`${log}-`);
+      console.log(product, "product");
+      dispatch(decreaseCart(product));
+    }
+    setPrevVal(currentVal);
+  };
 
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
@@ -26,7 +43,6 @@ const Cart = () => {
         const cartItems = resp.data;
         setCart(resp.data);
       });
-
     axios.get("http://localhost:5000/products").then((resp) => {
       const products = resp.data;
       setProduct(resp.data);
@@ -36,7 +52,7 @@ const Cart = () => {
     mapProducts();
   }, [product, cartItems]);
   let array = [];
-
+  console.log(count);
   const filterProducts = (item) => {
     let filter = product.filter((pro) => array.push(pro.id == item));
     setFilteredItems({ ...filteredItems, filter });
@@ -52,11 +68,20 @@ const Cart = () => {
     dispatch(getTotals());
   }, [cart, dispatch]);
 
-  const handleAddToCart = (product) => {
+  const handleAddToCart = (product, e) => {
+    if (product.id == e.target.name) {
+      setCount(count + 1);
+    }
     dispatch(addToCart(product));
+    console.log(e.target.name);
   };
-  const handleDecreaseCart = (product) => {
+  const handleDecreaseCart = (product, e) => {
+    if (product.id == e.target.name) {
+      setCount(count - 1);
+    }
+    console.log(product.id, "product_ID");
     dispatch(decreaseCart(product));
+    console.log(e.target.name, "cartInId");
   };
   const handleRemoveFromCart = (product) => {
     dispatch(removeFromCart(product));
@@ -82,13 +107,19 @@ const Cart = () => {
     dispatch(getTotals());
     dispatch(clearCart());
   };
+  const inputFunction = (e) => {
+    if(e.target.value > count){
+      setCount(count + 1)
+      console.log("increased");
+    } else{
+      setCount(count - 1)
+      console.log("decreased");
+    }
+  }
   return (
     <div className="cart-container">
       <h2>Shopping Cart</h2>
-      <div>
-        {cartItems.cartProducts?.map((item) => {
-        })}
-      </div>
+      <div>{cartItems.cartProducts?.map((item) => {})}</div>
       <div>
         <div className="titles">
           <h3 className="product-title">Product</h3>
@@ -119,13 +150,8 @@ const Cart = () => {
                   ${cartItem.product.price}
                 </div>
                 <div className="cart-product-quantity">
-                  <button onClick={() => handleDecreaseCart(cartItem.product)}>
-                    -
-                  </button>
-                  <div className="count">1</div>
-                  <button onClick={() => handleAddToCart(cartItem.product)}>
-                    +
-                  </button>
+
+                  <input type="number" min={1}  onChange={(e) =>setLogIfArrowClicked(e, cartItem.product)}/>
                 </div>
                 <div className="cart-product-total-price">
                   ${cartItem.product.price * 1}
@@ -166,7 +192,7 @@ const Cart = () => {
           </div>
         </div>
       </div>
-        </div>
+    </div>
   );
 };
 

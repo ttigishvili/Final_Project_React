@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 31, 2022 at 08:14 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Nov 05, 2022 at 01:09 PM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -108,9 +108,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `refresh_token`, `createdAt`, `updatedAt`, `isAdmin`) VALUES
 (1, 'M Fikri', 'email@gmail.com', '$2b$10$Wr4EunRyINxZpyEWft9weuS6e04KuGYnLhuiiiKTiPTrDcv3ftv4i', NULL, '2021-10-26 04:41:29', '2021-10-26 07:18:50', b'1'),
 (2, 'John Doe', 'john@gmail.com', '$2b$10$xp6VYwckwTrjhUCWgf5X3u4lFZq/NDC0/PGPh9TFT0lDICNDriPla', NULL, '2021-10-31 15:18:26', '2021-11-02 03:51:10', b'1'),
-(3, 'Not Admin', 'notadmin@gmail.com', '$2b$10$e5T2jHcxijeIPILU0DQCmOgUcY9GmsxD73JjZ8t9fGE.I8dHowWM.', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsIm5hbWUiOiJOb3QgQWRtaW4iLCJlbWFpbCI6Im5vdGFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY2NzI0MzAwMywiZXhwIjoxNjY3MzI5NDAzfQ.57LeD7U3UmB-sEC0KlX9eGHVVTtFxi-FVUMagBLjtNc', '2022-10-29 11:44:36', '2022-10-31 19:03:23', b'1'),
-(4, 'glexilexo', 'gorixar123@gmail.com', '$2b$10$QpnIe.N.vI4m.JuDEGTpWe5g4x6zy5WAgi3637/w4ey14NerhkWU.', NULL, '2022-10-29 16:40:55', '2022-10-29 16:40:55', b'0'),
-(5, 'zangi', 'notadmin1@gmail.com', '$2b$10$cV.grU9rjzOrGpa94j/lJOtPoRZNZ78LXpaYXAElfNfmRjE6mp0L2', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsIm5hbWUiOiJ6YW5naSIsImVtYWlsIjoibm90YWRtaW4xQGdtYWlsLmNvbSIsImlhdCI6MTY2NzI0Mjk2OSwiZXhwIjoxNjY3MzI5MzY5fQ.5igs3qkHIiwt8Zy-bdX31MYgPNNAbk3k5zebrrqLbOs', '2022-10-29 16:42:14', '2022-10-31 19:02:49', b'0');
+(6, 'admin', 'notadmin@gmail.com', '$2b$10$h9vEH8mxVowyjy8LeuQ3DexGFkimhV2dFb4MAYjQp1XFXbFjeOF.a', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsIm5hbWUiOiJhZG1pbiIsImVtYWlsIjoibm90YWRtaW5AZ21haWwuY29tIiwiaWF0IjoxNjY3NjUwMTI0LCJleHAiOjE2Njc3MzY1MjR9.Gh2nwBuoqvt4Py3614CXWNnn7ZdFLcWYDP5JG3AlZaQ', '2022-11-05 12:08:38', '2022-11-05 12:08:44', b'1');
 
 --
 -- Indexes for dumped tables
@@ -154,7 +152,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
